@@ -1,0 +1,55 @@
+﻿<h2>Ohm Calculator</h2>
+
+<div class="row">
+
+<form asp-controller="Home" asp-action="add" method="post">
+    <div class="colors">
+    <input type="radio" name="band1" id="brown" value="1">
+	<label for="brown">Brown</label>
+    <input type="radio" name="band1" id="red" value="2">
+	<label for="red">Red</label>
+    <input type="radio" name="band1" id="orange" value="3">
+    <label for="orange">Orange</label>
+    <input type="radio" name="band1" id="yellow" value="4">
+	<label for="yellow">Yellow</label>
+    <input type="radio" name="band1" id="green" value="5">
+	<label for="green">Green</label>
+    <input type="radio" name="band1" id="blue"  value="6">
+	<label for="blue">Blue</label>
+    <input type="radio" name="band1" id="violet" value="7">
+	<label for="violet">Violet</label>
+    <input type="radio" name="band1" id="grey" value="8">
+	<label for="grey">Grey</label>
+    <input type="radio" name="band1" id="white" value="9">
+	<label for="white">White</label>
+    <br /><br />
+
+	<input type="radio" name="band2" id="black2" value="0">
+    <label for="black2">Black</label>
+    <input type="radio" name="band2" id="brown2" value="1">
+    <label for="brown2">Brown</label>
+    <input type="radio" name="band2" id="red2" value="2">
+    <label for="red2">Red</label>
+    <input type="radio" name="band2" id="orange2" value="3">
+    <label for="orange2">Orange</label>
+    <input type="radio" name="band2" id="yellow2" value="4">
+    <label for="yellow2">Yellow</label>
+    <input type="radio" name="band2" id="green2" value="5">
+    <label for="green2">Green</label>
+    <input type="radio" name="band2" id="blue2"  value="6">
+    <label for="blue2">Blue</label>
+    <input type="radio" name="band2" id="violet2" value="7">
+    <label for="violet2">Violet</label>
+    <input type="radio" name="band2" id="grey2" value="8">
+    <label for="grey2">Grey</label>
+    <input type="radio" name="band2" id="white2" value="9">
+    <label for="white2">White</label>
+  </div>
+    
+	<span>Enter BandC : </span> <input id="Text1" type="text" name="band3" /> <br /><br />
+    <span>Enter BandD : </span> <input id="Text1" type="text" name="band4" /> <br /><br />
+    <input id="Submit1" type="submit" value="Calculate" />
+</form>
+
+<h2>@ViewBag.SumResult @ViewBag.Tolerance</h2>	
+</div>
