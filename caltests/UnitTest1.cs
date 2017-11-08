@@ -1,17 +1,31 @@
 using System;
 using Xunit;
 using cal.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using cal.Models;
 
 namespace caltests
 {
     public class UnitTest1
     {
         [Fact]
-        public void PassingTest()
+        public void ValidateIndexAsView()
         {
-            Assert.Equal(6, Add(3, 3));
+            HomeController method = new cal.Controllers.HomeController();
+
+            IActionResult result = method.Index();
+
+            Assert.IsType<ViewResult>(result);
         }
 
-        int Add(int x, int y) => x + y;
+        [Fact]
+        public void ValidateOhmValueCalculator()
+        {
+            HomeController method = new cal.Controllers.HomeController();
+
+            Assert.Equal(110, method.CalculateOhmValue("1","1","10","5"));
+
+        }
+
     }
 }

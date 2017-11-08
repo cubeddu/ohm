@@ -1,55 +1,127 @@
-﻿<h2>Ohm Calculator</h2>
-
-<div class="row">
-
-<form asp-controller="Home" asp-action="add" method="post">
-    <div class="colors">
-    <input type="radio" name="band1" id="brown" value="1">
-	<label for="brown">Brown</label>
-    <input type="radio" name="band1" id="red" value="2">
-	<label for="red">Red</label>
-    <input type="radio" name="band1" id="orange" value="3">
-    <label for="orange">Orange</label>
-    <input type="radio" name="band1" id="yellow" value="4">
-	<label for="yellow">Yellow</label>
-    <input type="radio" name="band1" id="green" value="5">
-	<label for="green">Green</label>
-    <input type="radio" name="band1" id="blue"  value="6">
-	<label for="blue">Blue</label>
-    <input type="radio" name="band1" id="violet" value="7">
-	<label for="violet">Violet</label>
-    <input type="radio" name="band1" id="grey" value="8">
-	<label for="grey">Grey</label>
-    <input type="radio" name="band1" id="white" value="9">
-	<label for="white">White</label>
-    <br /><br />
-
-	<input type="radio" name="band2" id="black2" value="0">
-    <label for="black2">Black</label>
-    <input type="radio" name="band2" id="brown2" value="1">
-    <label for="brown2">Brown</label>
-    <input type="radio" name="band2" id="red2" value="2">
-    <label for="red2">Red</label>
-    <input type="radio" name="band2" id="orange2" value="3">
-    <label for="orange2">Orange</label>
-    <input type="radio" name="band2" id="yellow2" value="4">
-    <label for="yellow2">Yellow</label>
-    <input type="radio" name="band2" id="green2" value="5">
-    <label for="green2">Green</label>
-    <input type="radio" name="band2" id="blue2"  value="6">
-    <label for="blue2">Blue</label>
-    <input type="radio" name="band2" id="violet2" value="7">
-    <label for="violet2">Violet</label>
-    <input type="radio" name="band2" id="grey2" value="8">
-    <label for="grey2">Grey</label>
-    <input type="radio" name="band2" id="white2" value="9">
-    <label for="white2">White</label>
-  </div>
-    
-	<span>Enter BandC : </span> <input id="Text1" type="text" name="band3" /> <br /><br />
-    <span>Enter BandD : </span> <input id="Text1" type="text" name="band4" /> <br /><br />
-    <input id="Submit1" type="submit" value="Calculate" />
-</form>
-
-<h2>@ViewBag.SumResult @ViewBag.Tolerance</h2>	
+﻿<div class="row center">
+    <h2>Ohm Calculator</h2>
+    <p>Calculates the Ohm value of a resistor based on the band colors.</p>
 </div>
+@if (@ViewBag.ohmValue != null)
+  {
+    <div class="row result">  
+        <h2 class="center">@ViewBag.ohmValue Ohm @ViewBag.Tolerance</h2>  
+    </div>
+  }
+<form asp-controller="home" asp-action="Submit" method="post" id="myform">
+    <div class="row">
+		<div class="card horizontal">
+        <div class="col s12 m6 l3">
+			<h3 class="center">Band A</h3>
+    		<div class="colors">
+			<input type="radio" name="band1" id="black" value="0" required>
+            <label for="black">Black</label>
+            <input type="radio" name="band1" id="brown" value="1">
+            <label for="brown">Brown</label>
+            <input type="radio" name="band1" id="red" value="2">
+            <label for="red">Red</label>
+            <input type="radio" name="band1" id="orange" value="3">
+            <label for="orange">Orange</label>
+            <input type="radio" name="band1" id="yellow" value="4">
+            <label for="yellow">Yellow</label>
+            <input type="radio" name="band1" id="green" value="5">
+            <label for="green">Green</label>
+            <input type="radio" name="band1" id="blue"  value="6">
+            <label for="blue">Blue</label>
+            <input type="radio" name="band1" id="violet" value="7">
+            <label for="violet">Violet</label>
+            <input type="radio" name="band1" id="grey" value="8">
+            <label for="grey">Grey</label>
+            <input type="radio" name="band1" id="white" value="9">
+            <label for="white">White</label>
+    		</div>
+    	</div>
+        <div class="col s12 m6 l3">
+			<h3 class="center">Band B</h3>
+            <div class="colors">
+            <input type="radio" name="band2" id="black2" value="0" required>
+            <label for="black2">Black</label>
+            <input type="radio" name="band2" id="brown2" value="1">
+            <label for="brown2">Brown</label>
+            <input type="radio" name="band2" id="red2" value="2">
+            <label for="red2">Red</label>
+            <input type="radio" name="band2" id="orange2" value="3">
+            <label for="orange2">Orange</label>
+            <input type="radio" name="band2" id="yellow2" value="4">
+            <label for="yellow2">Yellow</label>
+            <input type="radio" name="band2" id="green2" value="5">
+            <label for="green2">Green</label>
+            <input type="radio" name="band2" id="blue2"  value="6">
+            <label for="blue2">Blue</label>
+            <input type="radio" name="band2" id="violet2" value="7">
+            <label for="violet2">Violet</label>
+            <input type="radio" name="band2" id="grey2" value="8">
+            <label for="grey2">Grey</label>
+            <input type="radio" name="band2" id="white2" value="9">
+            <label for="white2">White</label>
+          </div>
+    	</div>
+        <div class="col s12 m6 l3">
+            <h3 class="center">Band C</h3>
+		    <div class="colors">
+            <input type="radio" name="multiplier" id="mblack" value="1" required>
+            <label for="mblack">Black</label>
+            <input type="radio" name="multiplier" id="mbrown" value="10">
+            <label for="mbrown">Brown</label>
+            <input type="radio" name="multiplier" id="mred" value="100">
+            <label for="mred">Red</label>
+            <input type="radio" name="multiplier" id="morange" value="1000">
+            <label for="morange">Orange</label>
+            <input type="radio" name="multiplier" id="myellow" value="10000">
+            <label for="myellow">Yellow</label>
+            <input type="radio" name="multiplier" id="mgreen" value="100000">
+            <label for="mgreen">Green</label>
+            <input type="radio" name="multiplier" id="mblue"  value="1000000">
+            <label for="mblue">Blue</label>
+            <input type="radio" name="multiplier" id="mviolet" value="10000000">
+            <label for="mviolet">Violet</label>
+            <input type="radio" name="multiplier" id="mgrey" value="100000000">
+            <label for="mgrey">Grey</label>
+            <input type="radio" name="multiplier" id="mwhite" value="1000000000">
+            <label for="mwhite">White</label>
+			<input type="radio" name="multiplier" id="pink" value="0.001">
+            <label for="pink">Pink</label>
+			<input type="radio" name="multiplier" id="silver" value="0.01">
+            <label for="silver">Silver</label>
+			<input type="radio" name="multiplier" id="gold" value="0.1">
+            <label for="gold">Gold</label>
+            </div>
+		</div>
+        <div class="col s12 m6 l3">
+			<h3 class="center">Band D</h3>
+		    <div class="colors">
+			<input type="radio" name="tolerance" id="none" value="20"  checked="checked" required>
+            <label for="none">None</label>
+            <input type="radio" name="tolerance" id="tbrown" value="1">
+            <label for="tbrown">Brown</label>
+            <input type="radio" name="tolerance" id="tred" value="2">
+            <label for="tred">Red</label>
+            <input type="radio" name="tolerance" id="tyellow" value="5">
+            <label for="tyellow">Yellow</label>
+            <input type="radio" name="tolerance" id="tgreen" value="0.5">
+            <label for="tgreen">Green</label>
+            <input type="radio" name="tolerance" id="tblue"  value="0.25">
+            <label for="tblue">Blue</label>
+            <input type="radio" name="tolerance" id="tviolet" value="0.1">
+            <label for="tviolet">Violet</label>
+            <input type="radio" name="tolerance" id="tgrey" value="0.05">
+            <label for="tgrey">Grey</label>
+			<input type="radio" name="tolerance" id="tsilver" value="10">
+            <label for="tsilver">Silver</label>
+			<input type="radio" name="tolerance" id="tgold" value="5">
+            <label for="tgold">Gold</label>
+            </div>
+		</div>
+		</div>
+	</div>
+	<div class="row center">
+		
+      <input id="Submit1" type="submit" value="Calculate" />
+        
+    </div>
+</form>

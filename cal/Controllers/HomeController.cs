@@ -8,27 +8,42 @@ namespace cal.Controllers
 {
     public class HomeController : Controller
     {
-        
+
         public IActionResult Index()
         {
-            
             return View();
         }
 
         [HttpPost]
-        public IActionResult add()
+        public IActionResult Submit()
         {
-            int band1 = Convert.ToInt32(HttpContext.Request.Form["band1"].ToString());
-            int band2 = Convert.ToInt32(HttpContext.Request.Form["band2"].ToString());
-            int band3 = Convert.ToInt32(HttpContext.Request.Form["band3"].ToString());
-            String band4 = HttpContext.Request.Form["band4"].ToString();
+            OhmValueCalculator viewModel = new OhmValueCalculator()
+            {
+                bandAColor = HttpContext.Request.Form["band1"].ToString(),
+                bandBColor = HttpContext.Request.Form["band2"].ToString(),
+                bandCColor = HttpContext.Request.Form["multiplier"].ToString(),
+                bandDColor = HttpContext.Request.Form["tolerance"].ToString()
+            };
 
-            String result = (band1 * 10 + band2) * band3 + " Ohms";
-            String tolerance = band4 + "%";
+            Int64 ohm = CalculateOhmValue(viewModel.bandAColor,viewModel.bandBColor,viewModel.bandCColor,viewModel.bandDColor);
 
-            ViewBag.SumResult = result.ToString();
-            ViewBag.Tolerance = tolerance.ToString();
+            ViewBag.ohmValue = ohm.ToString();
+            ViewBag.Tolerance = viewModel.bandDColor + "%";
+
             return View("Index");
         }
+
+        public int CalculateOhmValue(string bandAColor, string bandBColor, string bandCColor, string bandDColor)
+        {
+            //convert String to int
+            int bandAColorInt = Convert.ToInt32(bandAColor);
+            int bandBColorInt = Convert.ToInt32(bandBColor);
+            decimal bandCColorInt = decimal.Parse(bandCColor);
+
+            Int64 ohmValue = (Int64)((bandAColorInt * 10 + bandBColorInt) * bandCColorInt);
+         
+            return (int)ohmValue;
+        }
+
     }
 }
